@@ -1,4 +1,4 @@
-// awcoordinates
+// awcoordinates by Anthony Neace
 
 module.exports = {
   /**
@@ -36,7 +36,7 @@ module.exports = {
   /**
    * Validate a string exactly as aw coordinates. Trims whitespace before attempting validation.
    *
-   * @param  {String} Input string, for validation.
+   * @param  {String} Input string intended for validation.
    * @return {bool} True/False depending on result.
    */
   validate: function(str) {
