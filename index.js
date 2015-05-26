@@ -32,5 +32,18 @@ module.exports = {
     } 
   
     return output;
-  }
+  },
+  /**
+   * Validate a string exactly as aw coordinates. Trims whitespace before attempting validation.
+   *
+   * @param  {String} Input string, for validation.
+   * @return {bool} True/False depending on result.
+   */
+  validate: function(str) {
+  
+    // This regex captures a collection of all strings matching ActiveWorlds coordinate syntax. 
+    var coordinateRegex = /^(\S{2,}[ ]\d{1,}(?:n|s)[ ]\d{1,}(?:e|w)(?:[ ]?\d{0,}[\,\.]?\d{1,}?[a])?(?:[ ]?\d{0,})?)+$/i;   
+	
+	return coordinateRegex.test(str.trim());
+  }  
 };

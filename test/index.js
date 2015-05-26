@@ -1,6 +1,7 @@
 var should = require('chai').should(),
     awcoordinates = require('../index'),
-	find = awcoordinates.find;
+	find = awcoordinates.find,
+	validate = awcoordinates.validate;
 	
 describe('#find', function() {
   it('returns a single iterate when it finds one coordinate string.', function() {
@@ -51,4 +52,41 @@ describe('#find', function() {
     var result = find('This world should not be found a 1s 1e 0a anywhere!')
 	result.should.have.length(0);	
   });     
+});
+
+describe('#validate', function() {
+  it('the coordinates as true: aw 100s 100e', function() {
+    var result = validate('aw 100s 100e');
+    result.should.be.true;	
+  });
+  
+  it('the coordinates as true: awteen 0n 0e 1a', function() {
+    var result = validate('awteen 0n 0e 1a');
+    result.should.be.true;	
+  });  
+  
+  it('the coordinates as true: awteen 0n 0e 0.5a', function() {
+    var result = validate('awteen 0n 0e 0.5a');
+    result.should.be.true;	
+  });   
+  
+  it('the coordinates as true: CofMeta 10s 25w 0.5a 90', function() {
+    var result = validate('CofMeta 10s 25w 0.5a 90');
+    result.should.be.true;	
+  }); 
+
+  it('the coordinates as false: a 1n 1e 0a 0', function() {
+    var result = validate('a 1n 1e 0a 0');
+    result.should.be.false;	
+  });  
+  
+  it('the coordinates as false: aw 1n 1e 0b', function() {
+    var result = validate('aw 1n 1e 0b');
+    result.should.be.false;	
+  });   
+
+  it('the coordinates as false: aw 1n 1e 0a test', function() {
+    var result = validate('aw 1n 1e 0b test');
+    result.should.be.false;	
+  });    
 });
