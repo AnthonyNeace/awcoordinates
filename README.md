@@ -9,6 +9,20 @@ A library containing utility methods to manage ActiveWorlds coordinates as strin
 
 ## Usage
 
+This library deals with strings of the format:
+
+    <WORLDNAME> <NORTH/SOUTH POSITION> <EAST/WEST POSITION> <ALTITUDE> <DIRECTION>
+    
+Valid formats:
+
+* Worldname: At least two non-whitespace characters.
+* North/South Position: Integers ending in N/n or S/s.
+* East/West Position: Integers ending in E/e or W/w.
+* Altitude: Integer or decimal ending in A/a.
+* Direction: Non-negative integers from 0 to 360.
+
+Example:
+
     var awcoordinates = require('awcoordinates'),
       find = awcoordinates.find;
 
