@@ -9,12 +9,12 @@ A library containing utility methods to manage ActiveWorlds coordinates as strin
 
 ## Usage
 
-    var awcoordinates = require('awcoordinates')
+    var awcoordinates = require('awcoordinates'),
       find = awcoordinates.find;
 
     // Find returns an array of matched results.
     var myCoords = find('The party is located at AW 100s 100e 0.1a 180!);
-    // myCoords[0] = AW 100s 100e 0.1a 180
+    // This causes myCoords[0] to become "AW 100s 100e 0.1a 180"
     console.log(myCoords[0]);
 
 ## Tests
