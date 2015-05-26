@@ -9,11 +9,13 @@ A library containing utility methods to manage ActiveWorlds coordinates as strin
 
 ## Usage
 
+### AW Coordinates Syntax
+
 This library deals with strings of the format:
 
     <WORLDNAME> <NORTH/SOUTH POSITION> <EAST/WEST POSITION> <ALTITUDE> <DIRECTION>
     
-Valid formats:
+Valid syntax breakdown:
 
 * Worldname: At least two non-whitespace characters.
 * North/South Position: Integers ending in N/n or S/s.
@@ -21,15 +23,29 @@ Valid formats:
 * Altitude: Integer or decimal ending in A/a.
 * Direction: Non-negative integers from 0 to 360.
 
-Example:
+### Find
+
+Find returns an array of matched results.
 
     var awcoordinates = require('awcoordinates'),
       find = awcoordinates.find;
 
-    // Find returns an array of matched results.
-    var myCoords = find('The party is located at AW 100s 100e 0.1a 180!);
+    var myCoords = find('The party is located at AW 100s 100e 0.1a 180!');
     // This causes myCoords[0] to become "AW 100s 100e 0.1a 180"
     console.log(myCoords[0]);
+    
+### Validate
+
+Validate checks if a string matches AW coordinates syntax exactly.
+
+    var awcoordinates = require('awcoordinates'),
+      validate = awcoordinates.validate;
+
+    // Returns true
+    validate('AW 100s 100e 0.1a 180');
+    
+    // Returns false
+    validate('AlphaWorld is a cool place!';    
 
 ## Tests
 
