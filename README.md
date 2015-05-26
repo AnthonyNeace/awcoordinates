@@ -57,4 +57,5 @@ Add unit tests for any new or changed functionality.
 
 ## Release History
 
+* 0.2.0 Added validate() method.
 * 0.1.0 Initial release with find() method.
