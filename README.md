@@ -45,7 +45,7 @@ Validate checks if a string matches AW coordinates syntax exactly.
     validate('AW 100s 100e 0.1a 180');
     
     // Returns false
-    validate('AlphaWorld is a cool place!';    
+    validate('AlphaWorld is a cool place!');    
 
 ## Tests
 
