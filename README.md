@@ -13,7 +13,7 @@ A library containing utility methods to manage ActiveWorlds coordinates as strin
       find = awcoordinates.find;
 
     // Find returns an array of matched results.
-    var myCoords = find('The party is located at AW 100s 100e 0.1a 180, and I want to invite you there!);
+    var myCoords = find('The party is located at AW 100s 100e 0.1a 180!);
     // myCoords[0] = AW 100s 100e 0.1a 180
     console.log(myCoords[0]);
 
