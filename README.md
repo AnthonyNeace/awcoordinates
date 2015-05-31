@@ -18,9 +18,9 @@ This library deals with strings of the format:
 Valid syntax breakdown:
 
 * Worldname: At least two non-whitespace characters.
-* North/South Position: Integer or decimal ending in N/n or S/s.
-* East/West Position: Integer or decimal ending in E/e or W/w.
-* Altitude: Integer or decimal ending in A/a. Supports negative values.
+* North/South Position: Non-negative integer or decimal ending in N/n or S/s.
+* East/West Position: Non-negative integer or decimal ending in E/e or W/w.
+* Altitude: Positive or negative integer or decimal ending in A/a.
 * Direction: Non-negative integers from 0 to 360.
 
 ### Find
