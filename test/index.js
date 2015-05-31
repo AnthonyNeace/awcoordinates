@@ -70,6 +70,30 @@ describe('#find', function() {
     result.should.have.length(1);    
     result[0].should.equal('Mutation 20s 20e -.5a 180'); 	
   });   
+  
+  it('handles north/south decimal positions.', function() {
+    var result = find('This location is underground, at AD&DRPG 1000.5n 0e 0a 0.')
+    result.should.have.length(1);    
+    result[0].should.equal('AD&DRPG 1000.5n 0e 0a 0'); 	
+  }); 
+
+  it('handles east/west decimal positions.', function() {
+    var result = find('This location is underground, at AD&DRPG 0n 1000.5e 0a 0.')
+    result.should.have.length(1);    
+    result[0].should.equal('AD&DRPG 0n 1000.5e 0a 0'); 	
+  });      
+
+  it('handles north/south decimal positions with no leading decimal.', function() {
+    var result = find('This location is underground, at AD&DRPG .5n 0e 0a 0.')
+    result.should.have.length(1);    
+    result[0].should.equal('AD&DRPG .5n 0e 0a 0'); 	
+  }); 
+
+  it('handles east/west decimal positions with no leading decimal.', function() {
+    var result = find('This location is underground, at AD&DRPG 0n .5e 0a 0.')
+    result.should.have.length(1);    
+    result[0].should.equal('AD&DRPG 0n .5e 0a 0'); 	
+  });      
 });
 
 describe('#validate', function() {
@@ -121,5 +145,25 @@ describe('#validate', function() {
   it('the coordinates as true: Mutation 20s 20e -.5a 180', function() {
     var result = validate('Mutation 20s 20e -.5a 180');
     result.should.be.true;  	
-  });         
+  });    
+
+  it('the coordinates as true: AD&DRPG 1000.5n 0e 0a 0', function() {
+    var result = validate('AD&DRPG 1000.5n 0e 0a 0');
+    result.should.be.true;  	
+  });   
+  
+  it('the coordinates as true: AD&DRPG 0n 1000.5e 0a 0', function() {
+    var result = validate('AD&DRPG 0n 1000.5e 0a 0');
+    result.should.be.true;  	
+  });    
+
+  it('the coordinates as true: AD&DRPG .5n 0e 0a 0', function() {
+    var result = validate('AD&DRPG .5n 0e 0a 0');
+    result.should.be.true;  	
+  });   
+  
+  it('the coordinates as true: AD&DRPG 0n .5e 0a 0', function() {
+    var result = validate('AD&DRPG 0n .5e 0a 0');
+    result.should.be.true;  	
+  });   
 });
