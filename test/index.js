@@ -51,7 +51,25 @@ describe('#find', function() {
   it('enforce that worldnames are at least two characters long.', function() {
     var result = find('This world should not be found a 1s 1e 0a anywhere!')
     result.should.have.length(0);    
-  });     
+  });  
+
+  it('handles negative altitude.', function() {
+    var result = find('This location is underground, at Mutation 20n 20w -50a 180.')
+    result.should.have.length(1);    
+    result[0].should.equal('Mutation 20n 20w -50a 180'); 	
+  });    
+  
+  it('handles negative altitude with a leading decimal.', function() {
+    var result = find('This location is underground, at Mutation 20s 20e -0.5a 180.')
+    result.should.have.length(1);    
+    result[0].should.equal('Mutation 20s 20e -0.5a 180'); 	
+  });    
+
+  it('handles negative altitude with no leading decimal.', function() {
+    var result = find('This location is underground, at Mutation 20s 20e -.5a 180.')
+    result.should.have.length(1);    
+    result[0].should.equal('Mutation 20s 20e -.5a 180'); 	
+  });   
 });
 
 describe('#validate', function() {
@@ -89,4 +107,19 @@ describe('#validate', function() {
     var result = validate('aw 1n 1e 0b test');
     result.should.be.false;    
   });    
+  
+  it('the coordinates as true: Mutation 20n 20w -50a 180', function() {
+    var result = validate('Mutation 20n 20w -50a 180');
+    result.should.be.true;   	
+  });    
+  
+  it('the coordinates as true: Mutation 20s 20e -0.5a 180', function() {
+    var result = validate('Mutation 20s 20e -0.5a 180');
+    result.should.be.true;  	
+  });      
+
+  it('the coordinates as true: Mutation 20s 20e -.5a 180', function() {
+    var result = validate('Mutation 20s 20e -.5a 180');
+    result.should.be.true;  	
+  });         
 });
