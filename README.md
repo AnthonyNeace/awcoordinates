@@ -30,9 +30,8 @@ Find returns an array of matched results.
     var awcoordinates = require('awcoordinates'),
       find = awcoordinates.find;
 
+    // myCoords gets set to "AW 100s 100e 0.1a 180" 
     var myCoords = find('The party is located at AW 100s 100e 0.1a 180!');
-    // This causes myCoords[0] to become "AW 100s 100e 0.1a 180"
-    console.log(myCoords[0]);
     
 ### Validate
 
@@ -57,5 +56,6 @@ Add unit tests for any new or changed functionality.
 
 ## Release History
 
+* 0.3.0 Added support for negative altitude, decimals in positions.
 * 0.2.0 Added validate() method.
 * 0.1.0 Initial release with find() method.
