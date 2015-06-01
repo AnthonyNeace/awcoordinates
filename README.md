@@ -17,11 +17,11 @@ This library deals with strings of the format:
     
 Valid syntax breakdown:
 
-* Worldname: At least two non-whitespace characters.
+* Worldname: Non-whitespace characters. Min. length 2, max. length 16. To enforce this length, worldname should be preceded by a [word boundary](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-word-boundary).
 * North/South Position: Non-negative integer or decimal ending in N/n or S/s.
 * East/West Position: Non-negative integer or decimal ending in E/e or W/w.
 * Altitude: Positive or negative integer or decimal ending in A/a.
-* Direction: Non-negative integers from 0 to 360.
+* Direction: Non-negative integers from 0 to 360. AW appears to perform (x % 360) on this value, so it can be greater than 360 and still be valid.
 
 ### Find
 
