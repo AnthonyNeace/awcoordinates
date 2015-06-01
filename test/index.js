@@ -99,7 +99,12 @@ describe('#find', function() {
     var result = find('AW_2217.4s_3609.8e_0a_90', '_')
     result.should.have.length(1);    
     result[0].should.equal('AW_2217.4s_3609.8e_0a_90');     
-  });     
+  });   
+
+  it('truncates worldnames over 16 characters in length.', function() {
+    var result = find('?sixteencharacter 100s 100e')
+    result.should.have.length(1);   
+  });   
 });
 
 describe('#validate', function() {
@@ -176,5 +181,10 @@ describe('#validate', function() {
   it('the coordinates as true: AW_2217.4s_3609.8e_0a_90', function() {
     var result = validate('AW_2217.4s_3609.8e_0a_90', '_');
     result.should.be.true;      
-  });     
+  });  
+  
+  it('the coordinates as false: waytoomanycharacters 100s 100e 0a', function() {
+    var result = validate('waytoomanycharacters 100s 100e 0a', ' ');
+    result.should.be.false;      
+  });    
 });
