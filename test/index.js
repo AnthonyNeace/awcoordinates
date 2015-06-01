@@ -104,7 +104,13 @@ describe('#find', function() {
   it('rejects worldnames over 16 characters in length.', function() {
     var result = find('waytoomanycharacters 100s 100e 0a')
     result.should.have.length(0);    
-  });   
+  }); 
+
+  it('handles coordinates that skip altitude.', function() {
+    var result = find('AW 100s 100e 180') 
+    result.should.have.length(1);    
+    result[0].should.equal('AW 100s 100e 180');      
+  });       
 });
 
 describe('#validate', function() {
@@ -186,5 +192,10 @@ describe('#validate', function() {
   it('the coordinates as false: waytoomanycharacters 100s 100e 0a', function() {
     var result = validate('waytoomanycharacters 100s 100e 0a', ' ');
     result.should.be.false;      
-  });    
+  });  
+
+  it('the coordinates as true: AW 100s 100e 180', function() {
+    var result = validate('AW 100s 100e 180');
+    result.should.be.true;      
+  });     
 });
