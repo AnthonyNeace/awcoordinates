@@ -56,44 +56,50 @@ describe('#find', function() {
   it('handles negative altitude.', function() {
     var result = find('This location is underground, at Mutation 20n 20w -50a 180.')
     result.should.have.length(1);    
-    result[0].should.equal('Mutation 20n 20w -50a 180'); 	
+    result[0].should.equal('Mutation 20n 20w -50a 180');     
   });    
   
   it('handles negative altitude with a leading decimal.', function() {
     var result = find('This location is underground, at Mutation 20s 20e -0.5a 180.')
     result.should.have.length(1);    
-    result[0].should.equal('Mutation 20s 20e -0.5a 180'); 	
+    result[0].should.equal('Mutation 20s 20e -0.5a 180');     
   });    
 
   it('handles negative altitude with no leading decimal.', function() {
     var result = find('This location is underground, at Mutation 20s 20e -.5a 180.')
     result.should.have.length(1);    
-    result[0].should.equal('Mutation 20s 20e -.5a 180'); 	
+    result[0].should.equal('Mutation 20s 20e -.5a 180');     
   });   
   
   it('handles north/south decimal positions.', function() {
     var result = find('This location is underground, at AD&DRPG 1000.5n 0e 0a 0.')
     result.should.have.length(1);    
-    result[0].should.equal('AD&DRPG 1000.5n 0e 0a 0'); 	
+    result[0].should.equal('AD&DRPG 1000.5n 0e 0a 0');     
   }); 
 
   it('handles east/west decimal positions.', function() {
     var result = find('This location is underground, at AD&DRPG 0n 1000.5e 0a 0.')
     result.should.have.length(1);    
-    result[0].should.equal('AD&DRPG 0n 1000.5e 0a 0'); 	
+    result[0].should.equal('AD&DRPG 0n 1000.5e 0a 0');     
   });      
 
   it('handles north/south decimal positions with no leading decimal.', function() {
     var result = find('This location is underground, at AD&DRPG .5n 0e 0a 0.')
     result.should.have.length(1);    
-    result[0].should.equal('AD&DRPG .5n 0e 0a 0'); 	
+    result[0].should.equal('AD&DRPG .5n 0e 0a 0');     
   }); 
 
   it('handles east/west decimal positions with no leading decimal.', function() {
     var result = find('This location is underground, at AD&DRPG 0n .5e 0a 0.')
     result.should.have.length(1);    
-    result[0].should.equal('AD&DRPG 0n .5e 0a 0'); 	
+    result[0].should.equal('AD&DRPG 0n .5e 0a 0');     
   });      
+  
+  it('handles custom whitespace characters.', function() {
+    var result = find('AW_2217.4s_3609.8e_0a_90', '_')
+    result.should.have.length(1);    
+    result[0].should.equal('AW_2217.4s_3609.8e_0a_90');     
+  });     
 });
 
 describe('#validate', function() {
@@ -134,36 +140,41 @@ describe('#validate', function() {
   
   it('the coordinates as true: Mutation 20n 20w -50a 180', function() {
     var result = validate('Mutation 20n 20w -50a 180');
-    result.should.be.true;   	
+    result.should.be.true;       
   });    
   
   it('the coordinates as true: Mutation 20s 20e -0.5a 180', function() {
     var result = validate('Mutation 20s 20e -0.5a 180');
-    result.should.be.true;  	
+    result.should.be.true;      
   });      
 
   it('the coordinates as true: Mutation 20s 20e -.5a 180', function() {
     var result = validate('Mutation 20s 20e -.5a 180');
-    result.should.be.true;  	
+    result.should.be.true;      
   });    
 
   it('the coordinates as true: AD&DRPG 1000.5n 0e 0a 0', function() {
     var result = validate('AD&DRPG 1000.5n 0e 0a 0');
-    result.should.be.true;  	
+    result.should.be.true;      
   });   
   
   it('the coordinates as true: AD&DRPG 0n 1000.5e 0a 0', function() {
     var result = validate('AD&DRPG 0n 1000.5e 0a 0');
-    result.should.be.true;  	
+    result.should.be.true;      
   });    
 
   it('the coordinates as true: AD&DRPG .5n 0e 0a 0', function() {
     var result = validate('AD&DRPG .5n 0e 0a 0');
-    result.should.be.true;  	
+    result.should.be.true;      
   });   
   
   it('the coordinates as true: AD&DRPG 0n .5e 0a 0', function() {
     var result = validate('AD&DRPG 0n .5e 0a 0');
-    result.should.be.true;  	
+    result.should.be.true;      
   });   
+  
+  it('the coordinates as true: AW_2217.4s_3609.8e_0a_90', function() {
+    var result = validate('AW_2217.4s_3609.8e_0a_90', '_');
+    result.should.be.true;      
+  });     
 });
