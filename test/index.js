@@ -101,9 +101,9 @@ describe('#find', function() {
     result[0].should.equal('AW_2217.4s_3609.8e_0a_90');     
   });   
 
-  it('truncates worldnames over 16 characters in length.', function() {
-    var result = find('?sixteencharacter 100s 100e')
-    result.should.have.length(1);   
+  it('rejects worldnames over 16 characters in length.', function() {
+    var result = find('waytoomanycharacters 100s 100e 0a')
+    result.should.have.length(0);    
   });   
 });
 
