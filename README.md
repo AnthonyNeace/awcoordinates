@@ -19,9 +19,14 @@ Valid syntax breakdown:
 
 * Worldname: Non-whitespace characters. Min. length 2, max. length 16. To enforce this length, worldname should be preceded by a [word boundary](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-word-boundary).
 * North/South Position: Non-negative integer or decimal ending in N/n or S/s.
+..* AW SDK Documentation: [AW_MY_Z](http://wiki.activeworlds.com/index.php?title=AW_MY_Z)
 * East/West Position: Non-negative integer or decimal ending in E/e or W/w.
+..* AW SDK Documentation: [AW_MY_X](http://wiki.activeworlds.com/index.php?title=AW_MY_X)
 * Altitude: Positive or negative integer or decimal ending in A/a.
-* Direction: Non-negative integers from 0 to 360. AW appears to perform (x % 360) on this value, so it can be greater than 360 and still be valid.
+..* AW SDK Documentation: [AW_MY_Y](http://wiki.activeworlds.com/index.php?title=AW_MY_Y)
+* Direction: Non-negative integers, in degrees.
+..* AW SDK Documentation: [AW_MY_YAW](http://wiki.activeworlds.com/index.php?title=AW_MY_YAW)
+..* Values are mapped to the range 0-359 via modulus. The AW SDK documentation inparticular notes the operation (yaw % 3600) on yaw values in tenths of a degree.
 
 ### Find
 
