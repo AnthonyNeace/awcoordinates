@@ -1,7 +1,18 @@
-var should = require('chai').should(),
+var chai = require('chai');
+
+var should = chai.should(),
     awcoordinates = require('../index'),
     find = awcoordinates.find,
-    validate = awcoordinates.validate;
+    validate = awcoordinates.validate,
+    normalize = awcoordinates.normalize;
+    
+var expect = chai.expect(),
+    awcoordinates = require('../index'),
+    find = awcoordinates.find,
+    validate = awcoordinates.validate,
+    normalize = awcoordinates.normalize;
+    
+//var assert = chai.assert();
     
 describe('#find', function() {
   it('returns a single iterate when it finds one coordinate string.', function() {
@@ -198,4 +209,76 @@ describe('#validate', function() {
     var result = validate('AW 100s 100e 180');
     result.should.be.true;      
   });     
+});
+
+
+describe('#normalize', function() {  
+  it('aw 100s 100e', function() {
+    var result = JSON.parse(normalize('aw 100s 100e', ' '));
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('100s');    
+    result.stringParts.ewposition.should.equal('100e');    
+    result.stringParts.altitude.should.equal('0a');
+    result.stringParts.direction.should.equal('0');    
+    result.sdkParts.x.should.equal(-10000);    
+    result.sdkParts.z.should.equal(-10000);    
+    result.sdkParts.y.should.equal(0);
+    result.sdkParts.yaw.should.equal(0);    
+  });
+  
+  it('aw 200s 200e 20a 180', function() {
+    var result = JSON.parse(normalize('aw 200s 200e 20a 180', ' '));
+    result.description.should.equal('aw 200s 200e 20a 180');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('200s');    
+    result.stringParts.ewposition.should.equal('200e');    
+    result.stringParts.altitude.should.equal('20a');
+    result.stringParts.direction.should.equal('180');
+    result.sdkParts.x.should.equal(-20000);    
+    result.sdkParts.z.should.equal(-20000);    
+    result.sdkParts.y.should.equal(2000);    
+    result.sdkParts.yaw.should.equal(1800);
+  });  
+  
+  it('aw 300s 300e 300', function() {
+    var result = JSON.parse(normalize('aw 300s 300e 300', ' '));
+    result.description.should.equal('aw 300s 300e 300');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('300s');    
+    result.stringParts.ewposition.should.equal('300e');    
+    result.stringParts.altitude.should.equal('0a');
+    result.stringParts.direction.should.equal('300');
+    result.sdkParts.x.should.equal(-30000);    
+    result.sdkParts.z.should.equal(-30000);    
+    result.sdkParts.y.should.equal(0);    
+    result.sdkParts.yaw.should.equal(3000);
+  });    
+  
+  it('aw 4000.5s 4000.5e 20.5a 90', function() {
+    var result = JSON.parse(normalize('aw 4000.5s 4000.5e 20.5a 90', ' '));
+    result.description.should.equal('aw 4000.5s 4000.5e 20.5a 90');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('4000.5s');    
+    result.stringParts.ewposition.should.equal('4000.5e');    
+    result.stringParts.altitude.should.equal('20.5a');
+    result.stringParts.direction.should.equal('90');
+    result.sdkParts.x.should.equal(-400050);    
+    result.sdkParts.z.should.equal(-400050);    
+    result.sdkParts.y.should.equal(2050);    
+    result.sdkParts.yaw.should.equal(900);
+  });    
+
+  it('aw 5000.0n 5000.5w -50.5a 123', function() {
+    var result = JSON.parse(normalize('aw 5000.0n 5000.5w -50.5a 123', ' '));
+    result.description.should.equal('aw 5000.0n 5000.5w -50.5a 123');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('5000.0n');    
+    result.stringParts.ewposition.should.equal('5000.5w');    
+    result.stringParts.altitude.should.equal('-50.5a');
+    result.stringParts.direction.should.equal('123');
+    result.sdkParts.x.should.equal(500050);    
+    result.sdkParts.z.should.equal(500000);    
+    result.sdkParts.y.should.equal(-5050);    
+    result.sdkParts.yaw.should.equal(1230);
+  });    
 });

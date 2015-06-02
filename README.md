@@ -45,6 +45,34 @@ Validate checks if a string matches AW coordinates syntax exactly.
     
     // Returns false
     validate('AlphaWorld is a cool place!');    
+    
+### Normalize
+
+Normalize breaks a coordinate string down into human and machine ([AW SDK[(http://wiki.activeworlds.com/index.php?title=SDK)) readable parts. Returns as a JSON string.
+
+    var awcoordinates = require('awcoordinates'),
+      normalize = awcoordinates.normalize;      
+      
+    var myCoords = normalize('aw 5000.0n 5000.5w -50.5a 123');
+    
+    /* var myCoords Output:
+    {
+      "stringParts": {
+        "nsposition": "5000.0n",
+        "ewposition": "5000.5w",
+        "altitude": "-50.5a",
+        "direction": "123"
+      },
+      "sdkParts": {
+        "z": 500000,
+        "x": 500050,
+        "y": -5050,
+        "yaw": 1230
+      },
+      "description": "aw 5000.0n 5000.5w -50.5a 123",
+      "worldname": "aw"
+    }      
+    */
 
 ## Tests
 
@@ -56,6 +84,7 @@ Add unit tests for any new or changed functionality.
 
 ## Release History
 
+* 0.4.0 Added normalize() method.
 * 0.3.0 Added support for negative altitude, decimals in positions.
 * 0.2.0 Added validate() method.
 * 0.1.0 Initial release with find() method.
