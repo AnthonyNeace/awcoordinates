@@ -121,7 +121,19 @@ describe('#find', function() {
     var result = find('AW 100s 100e 180') 
     result.should.have.length(1);    
     result[0].should.equal('AW 100s 100e 180');      
-  });       
+  }); 
+
+  it('handles decimal altitudes.', function() {
+    var result = find('AW 100s 100e 67.9') 
+    result.should.have.length(1);    
+    result[0].should.equal('AW 100s 100e 67.9');      
+  });     
+
+  it('handles decimal altitudes with no leading decimal.', function() {
+    var result = find('AW 100s 100e .9') 
+    result.should.have.length(1);    
+    result[0].should.equal('AW 100s 100e .9');      
+  });   
 });
 
 describe('#validate', function() {
@@ -209,6 +221,16 @@ describe('#validate', function() {
     var result = validate('AW 100s 100e 180');
     result.should.be.true;      
   });     
+  
+  it('the coordinates as true: AW 100s 100e 50.5', function() {
+    var result = validate('AW 100s 100e 50.5');
+    result.should.be.true;      
+  }); 
+
+  it('the coordinates as true: AW 100s 100e .5', function() {
+    var result = validate('AW 100s 100e .5');
+    result.should.be.true;      
+  });   
 });
 
 
@@ -281,4 +303,32 @@ describe('#normalize', function() {
     result.sdkParts.y.should.equal(-5050);    
     result.sdkParts.yaw.should.equal(1230);
   });    
+  
+  it('aw 6000.0n 6000.0w -60.0a 75.5', function() {
+    var result = JSON.parse(normalize('aw 6000.0n 6000.0w -60.0a 75.5', ' '));
+    result.description.should.equal('aw 6000.0n 6000.0w -60.0a 75.5');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('6000.0n');    
+    result.stringParts.ewposition.should.equal('6000.0w');    
+    result.stringParts.altitude.should.equal('-60.0a');
+    result.stringParts.direction.should.equal('75.5');
+    result.sdkParts.x.should.equal(600000);    
+    result.sdkParts.z.should.equal(600000);    
+    result.sdkParts.y.should.equal(-6000);    
+    result.sdkParts.yaw.should.equal(755);
+  });      
+  
+  it('aw 7000.0n 7000.0w -70.0a .5', function() {
+    var result = JSON.parse(normalize('aw 7000.0n 7000.0w -70.0a .5', ' '));
+    result.description.should.equal('aw 7000.0n 7000.0w -70.0a .5');
+    result.worldname.should.equal('aw');   
+    result.stringParts.nsposition.should.equal('7000.0n');    
+    result.stringParts.ewposition.should.equal('7000.0w');    
+    result.stringParts.altitude.should.equal('-70.0a');
+    result.stringParts.direction.should.equal('.5');
+    result.sdkParts.x.should.equal(700000);    
+    result.sdkParts.z.should.equal(700000);    
+    result.sdkParts.y.should.equal(-7000);    
+    result.sdkParts.yaw.should.equal(5);
+  });   
 });

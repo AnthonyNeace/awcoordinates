@@ -26,7 +26,7 @@ Valid syntax breakdown:
   * AW SDK Documentation: [AW_MY_X](http://wiki.activeworlds.com/index.php?title=AW_MY_X)
 * Altitude: Positive or negative integer or decimal ending in A/a.
   * AW SDK Documentation: [AW_MY_Y](http://wiki.activeworlds.com/index.php?title=AW_MY_Y)
-* Direction: Non-negative integers, in degrees.
+* Direction: Non-negative integers or decimals. Maps to degrees.
   * AW SDK Documentation: [AW_MY_YAW](http://wiki.activeworlds.com/index.php?title=AW_MY_YAW)
   * Values are mapped to the range 0-359 via modulus. The AW SDK documentation inparticular notes the operation (yaw % 3600) on yaw values in tenths of a degree.
 
