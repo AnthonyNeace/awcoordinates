@@ -48,7 +48,7 @@ Validate checks if a string matches AW coordinates syntax exactly.
     
 ### Normalize
 
-Normalize breaks a coordinate string down into human and machine ([AW SDK[(http://wiki.activeworlds.com/index.php?title=SDK)) readable parts. Returns as a JSON string.
+Normalize breaks a coordinate string down into human and machine ([AW SDK](http://wiki.activeworlds.com/index.php?title=SDK)) readable parts. Returns as a JSON string.
 
     var awcoordinates = require('awcoordinates'),
       normalize = awcoordinates.normalize;      
