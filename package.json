@@ -1,6 +1,6 @@
 {
   "name": "awcoordinates",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "A library containing utility methods to manage ActiveWorlds coordinates as strings.",
   "main": "index.js",
   "repository": {

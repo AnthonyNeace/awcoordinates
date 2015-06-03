@@ -80,6 +80,16 @@ Normalize breaks a coordinate string down into human and machine ([AW SDK](http:
       "worldname": "aw"
     }      
     */
+    
+### Teleport
+
+Teleport generates a teleport command string, based on the input coordinates string. It also validates that the string is a set of coordinates before returning. The returned string can be saved to a file and opened with AW to teleport to the given location.
+
+    var awcoordinates = require('awcoordinates'),
+      teleport = awcoordinates.teleport;
+
+    // Returns 'teleport aw 100s 100e 0.1a 180\r\n'
+    teleport('AW 100s 100e 0.1a 180');       
 
 ## Tests
 
@@ -87,10 +97,11 @@ Normalize breaks a coordinate string down into human and machine ([AW SDK](http:
 
 ## Contributing
 
-Add unit tests for any new or changed functionality.
+Contributions are welcome! Fork this repository to make changes and then submit a pull request.  Add unit tests for any new or changed functionality.
 
 ## Release History
 
+* 0.5.0 Added teleport() method.
 * 0.4.0 Added normalize() method.
 * 0.3.0 Added support for negative altitude, decimals in positions.
 * 0.2.0 Added validate() method.

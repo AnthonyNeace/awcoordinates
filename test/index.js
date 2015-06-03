@@ -4,7 +4,8 @@ var should = chai.should(),
     awcoordinates = require('../index'),
     find = awcoordinates.find,
     validate = awcoordinates.validate,
-    normalize = awcoordinates.normalize;
+    normalize = awcoordinates.normalize,
+    teleport = awcoordinates.teleport;
     
 var expect = chai.expect(),
     awcoordinates = require('../index'),
@@ -233,7 +234,6 @@ describe('#validate', function() {
   });   
 });
 
-
 describe('#normalize', function() {  
   it('aw 100s 100e', function() {
     var result = JSON.parse(normalize('aw 100s 100e', ' '));
@@ -331,4 +331,11 @@ describe('#normalize', function() {
     result.sdkParts.y.should.equal(-7000);    
     result.sdkParts.yaw.should.equal(5);
   });   
+});  
+  
+describe('#teleport', function() {  
+  it('to aw 100s 100e', function() {
+    var result = teleport('aw 100s 100e'); 
+    result.should.equal('teleport aw 100s 100e 0a 0\r\n');
+  });
 });
