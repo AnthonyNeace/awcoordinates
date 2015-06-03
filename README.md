@@ -2,6 +2,7 @@ awcoordinates
 =========
 
 [![Build Status](https://travis-ci.org/AnthonyNeace/awcoordinates.svg?branch=master)](https://travis-ci.org/AnthonyNeace/awcoordinates)
+[![NPM version](https://badge.fury.io/js/awcoordinates.svg)](https://www.npmjs.com/package/awcoordinates)
 
 A library containing utility methods to manage ActiveWorlds coordinates as strings. 
 
