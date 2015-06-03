@@ -23,6 +23,6 @@
     "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "mocha .\\test\\index.js"
+    "test": "mocha"
   }  
 }
