@@ -1,14 +1,14 @@
 var chai = require('chai');
 
 var should = chai.should(),
-    awcoordinates = require('../index'),
+    awcoordinates = require('../lib-cov/awcoordinates.js'),
     find = awcoordinates.find,
     validate = awcoordinates.validate,
     normalize = awcoordinates.normalize,
     teleport = awcoordinates.teleport;
     
 var expect = chai.expect(),
-    awcoordinates = require('../index'),
+    awcoordinates = require('../lib-cov/awcoordinates.js'),
     find = awcoordinates.find,
     validate = awcoordinates.validate,
     normalize = awcoordinates.normalize;

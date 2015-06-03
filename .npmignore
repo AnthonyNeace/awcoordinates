@@ -1,2 +1,4 @@
 node_modules
 .travis.yml
+lib-cov
+test
