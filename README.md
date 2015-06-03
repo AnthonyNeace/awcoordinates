@@ -64,25 +64,27 @@ Normalize breaks a coordinate string down into human and machine ([AW SDK](http:
       normalize = awcoordinates.normalize;      
       
     var myCoords = normalize('aw 5000.0n 5000.5w -50.5a 123');
+
+Output:
     
-    /* var myCoords Output:
-    {
-      "stringParts": {
-        "nsposition": "5000.0n",
-        "ewposition": "5000.5w",
-        "altitude": "-50.5a",
-        "direction": "123"
-      },
-      "sdkParts": {
-        "z": 500000,
-        "x": 500050,
-        "y": -5050,
-        "yaw": 1230
-      },
-      "description": "aw 5000.0n 5000.5w -50.5a 123",
-      "worldname": "aw"
-    }      
-    */
+```json
+{
+  "stringParts": {
+    "nsposition": "5000.0n",
+    "ewposition": "5000.5w",
+    "altitude": "-50.5a",
+    "direction": "123"
+  },
+  "sdkParts": {
+    "z": 500000,
+    "x": 500050,
+    "y": -5050,
+    "yaw": 1230
+  },
+  "description": "aw 5000.0n 5000.5w -50.5a 123",
+  "worldname": "aw"
+}      
+```
     
 ### Teleport
 
