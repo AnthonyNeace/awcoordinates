@@ -246,6 +246,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(-10000);    
     result.sdkParts.y.should.equal(0);
     result.sdkParts.yaw.should.equal(0);    
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);         
   });
   
   it('aw 200s 200e 20a 180', function() {
@@ -260,6 +262,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(-20000);    
     result.sdkParts.y.should.equal(2000);    
     result.sdkParts.yaw.should.equal(1800);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });  
   
   it('aw 300s 300e 300', function() {
@@ -274,6 +278,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(-30000);    
     result.sdkParts.y.should.equal(0);    
     result.sdkParts.yaw.should.equal(3000);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });    
   
   it('aw 4000.5s 4000.5e 20.5a 90', function() {
@@ -288,6 +294,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(-400050);    
     result.sdkParts.y.should.equal(2050);    
     result.sdkParts.yaw.should.equal(900);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });    
 
   it('aw 5000.0n 5000.5w -50.5a 123', function() {
@@ -302,6 +310,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(500000);    
     result.sdkParts.y.should.equal(-5050);    
     result.sdkParts.yaw.should.equal(1230);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });    
   
   it('aw 6000.0n 6000.0w -60.0a 75.5', function() {
@@ -316,6 +326,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(600000);    
     result.sdkParts.y.should.equal(-6000);    
     result.sdkParts.yaw.should.equal(755);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });      
   
   it('aw 7000.0n 7000.0w -70.0a .5', function() {
@@ -330,6 +342,8 @@ describe('#normalize', function() {
     result.sdkParts.z.should.equal(700000);    
     result.sdkParts.y.should.equal(-7000);    
     result.sdkParts.yaw.should.equal(5);
+    result.sdkParts.pitch.should.equal(0); 
+    result.sdkParts.roll.should.equal(0);      
   });   
 });  
   

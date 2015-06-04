@@ -38,33 +38,43 @@ Valid syntax breakdown:
 
 Find returns an array of matched results.
 
-    var awcoordinates = require('awcoordinates'),
-      find = awcoordinates.find;
+```javascript
+var awcoordinates = require('awcoordinates'),
+  find = awcoordinates.find;
 
-    // myCoords gets set to "AW 100s 100e 0.1a 180" 
-    var myCoords = find('The party is located at AW 100s 100e 0.1a 180!');
+var result = find('We will start by visiting AW 100s 100e 0.1a 180, then AWTeen 2500s 500e 180, and finally COFMeta 1000.5s 1000.5e -10a 270!');
+```
+
+Output:
+```javascript
+[ 'AW 100s 100e 0.1a 180', 'AWTeen 2500s 500e 180', 'COFMeta 1000.5s 1000.5e -10a 270' ]
+```
     
 ### Validate
 
 Validate checks if a string matches AW coordinates syntax exactly.
 
-    var awcoordinates = require('awcoordinates'),
-      validate = awcoordinates.validate;
+```javascript
+var awcoordinates = require('awcoordinates'),
+  validate = awcoordinates.validate;
 
-    // Returns true
-    validate('AW 100s 100e 0.1a 180');
-    
-    // Returns false
-    validate('AlphaWorld is a cool place!');    
+validate('AW 50.5N 30.3E');                   // Returns true
+
+validate('AWTeen 100s 100e 0.1a 180');        // Returns true
+
+validate('AlphaWorld is a cool place!');      // Returns false
+```
     
 ### Normalize
 
 Normalize breaks a coordinate string down into human and machine ([AW SDK](http://wiki.activeworlds.com/index.php?title=SDK)) readable parts. Returns as a JSON string.
 
-    var awcoordinates = require('awcoordinates'),
-      normalize = awcoordinates.normalize;      
-      
-    var myCoords = normalize('aw 5000.0n 5000.5w -50.5a 123');
+```javascript
+var awcoordinates = require('awcoordinates'),
+  normalize = awcoordinates.normalize;      
+  
+var result = normalize('aw 5000.0n 5000.5w -50.5a 123');
+```
 
 Output:
     
@@ -80,7 +90,9 @@ Output:
     "z": 500000,
     "x": 500050,
     "y": -5050,
-    "yaw": 1230
+    "yaw": 1230,
+    "pitch": 0,
+    "roll": 0
   },
   "description": "aw 5000.0n 5000.5w -50.5a 123",
   "worldname": "aw"
@@ -91,11 +103,18 @@ Output:
 
 Teleport generates a teleport command string, based on the input coordinates string. It also validates that the string is a set of coordinates before returning. The returned string can be saved to a file and opened with AW to teleport to the given location.
 
-    var awcoordinates = require('awcoordinates'),
-      teleport = awcoordinates.teleport;
+```javascript
+var awcoordinates = require('awcoordinates'),
+  teleport = awcoordinates.teleport;
 
-    // Returns 'teleport aw 100s 100e 0.1a 180\r\n'
-    teleport('AW 100s 100e 0.1a 180');       
+var result = teleport('AW 100s 100e 0.1a 180');     
+```  
+    
+Output:
+
+```javascript
+'teleport aw 100s 100e 0.1a 180\r\n'
+```
 
 ## Tests
 
