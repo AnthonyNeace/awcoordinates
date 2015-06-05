@@ -11,9 +11,7 @@ A library containing utility methods to manage ActiveWorlds coordinates as strin
 
     npm install awcoordinates --save
 
-## Usage
-
-### AW Coordinates Syntax
+## AW Coordinates Syntax
 
 This library deals with strings of the format:
 
@@ -33,6 +31,8 @@ Valid syntax breakdown:
 * Direction: Non-negative integers or decimals. Maps to degrees.
   * AW SDK Documentation: [AW_MY_YAW](http://wiki.activeworlds.com/index.php?title=AW_MY_YAW)
   * Values are mapped to the range 0-359 via modulus. The AW SDK documentation inparticular notes the operation (yaw % 3600) on yaw values in tenths of a degree.
+
+## Usage
 
 ### Find
 
