@@ -5,13 +5,15 @@ var should = chai.should(),
     find = awcoordinates.find,
     validate = awcoordinates.validate,
     normalize = awcoordinates.normalize,
-    teleport = awcoordinates.teleport;
+    teleport = awcoordinates.teleport,
+    random = awcoordinates.random;
     
 var expect = chai.expect(),
     awcoordinates = process.env.AWCOORDINATES_COV ? require("../lib-cov/awcoordinates.js") : require("../lib/awcoordinates.js"),
     find = awcoordinates.find,
     validate = awcoordinates.validate,
-    normalize = awcoordinates.normalize;
+    normalize = awcoordinates.normalize,
+    random = awcoordinates.random;
     
 //var assert = chai.assert();
     
@@ -352,4 +354,32 @@ describe('#teleport', function() {
     var result = teleport('aw 100s 100e'); 
     result.should.equal('teleport aw 100s 100e 0a 0\r\n');
   });
+});
+
+describe('#random', function() {  
+  it('coordinates in aw', function() {
+    var result = random('aw'); 
+    result.should.not.be.null;
+    var isValid = validate(result);
+    if(isValid == false)
+    {
+      console.log(result);
+    }
+    isValid.should.be.true;
+  });
+  it('coordinates in TestWorld with max pSize of 10', function() {
+    var pSize = 10;
+    var result = random('TestWorld', pSize); 
+    result.should.not.be.null;
+    var isValid = validate(result);
+    if(isValid == false)
+    {
+      console.log(result);
+    }
+    isValid.should.be.true;
+    var awLocation = JSON.parse(normalize(result));  
+    // SDK Parts convert coordinates to centimeters.  1 coordinate = 10 meters, or 1000 centimeters  
+    awLocation.sdkParts.z.should.be.below(pSize*100);
+    awLocation.sdkParts.x.should.be.below(pSize*100);  
+  });  
 });

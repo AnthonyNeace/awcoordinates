@@ -116,6 +116,23 @@ Output:
 'teleport aw 100s 100e 0.1a 180\r\n'
 ```
 
+### Random
+
+Generate a random location as a coordinates string. Callers can pass in the World Name and World "P-Size", the maximum "size" of the world in any given direction.
+
+```javascript
+var awcoordinates = require('awcoordinates'),
+  random = awcoordinates.random;
+
+var result = random('TestWorld', 10);     
+```  
+    
+Output:
+
+```javascript
+'TestWorld 1.3n 7.7e 0a 8.7'
+```
+
 ## Tests
 
     npm test
