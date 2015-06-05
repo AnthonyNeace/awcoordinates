@@ -23,12 +23,16 @@ Valid syntax breakdown:
   * Min. length 2, max. length 16. 
   * To enforce this length, worldname should be preceded by a [word boundary](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-word-boundary).
 * North/South Position: Non-negative integer or decimal ending in N/n or S/s.
+  * Defined in coordinates.  1 Coordinate = 10 meters
   * AW SDK Documentation: [AW_MY_Z](http://wiki.activeworlds.com/index.php?title=AW_MY_Z)
 * East/West Position: Non-negative integer or decimal ending in E/e or W/w.
+  * Defined in coordinates.  1 Coordinate = 10 meters
   * AW SDK Documentation: [AW_MY_X](http://wiki.activeworlds.com/index.php?title=AW_MY_X)
 * Altitude: Positive or negative integer or decimal ending in A/a.
+  * Defined in coordinates.  1 Coordinate = 10 meters
   * AW SDK Documentation: [AW_MY_Y](http://wiki.activeworlds.com/index.php?title=AW_MY_Y)
-* Direction: Non-negative integers or decimals. Maps to degrees.
+* Direction: Non-negative integers or decimals. 
+  * Defined in degrees.
   * AW SDK Documentation: [AW_MY_YAW](http://wiki.activeworlds.com/index.php?title=AW_MY_YAW)
   * Values are mapped to the range 0-359 via modulus. The AW SDK documentation inparticular notes the operation (yaw % 3600) on yaw values in tenths of a degree.
 
@@ -135,6 +139,10 @@ Output:
 
 ## Tests
 
+To reduce the package size, tests are not included in the npm release.  Clone the GitHub repo to get the tests.
+
+To run:
+
     npm test
 
 ## Contributing
@@ -143,6 +151,7 @@ Contributions are welcome! Fork this repository to make changes and then submit 
 
 ## Release History
 
+* 0.5.5 Added random() method.
 * 0.5.0 Added teleport() method.
 * 0.4.0 Added normalize() method.
 * 0.3.0 Added support for negative altitude, decimals in positions.
